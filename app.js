@@ -297,6 +297,12 @@ function generateReport(event) {
   }));
 }
 
+function downloadPdfReport() {
+  // 当前版本调用浏览器打印能力。
+  // 在打印弹窗中选择“保存为 PDF”或“另存为 PDF”，即可下载报告。
+  window.print();
+}
+
 function restartAssessment() {
   document.querySelector("#reportSection").classList.add("hidden");
   document.querySelector("#assessment").scrollIntoView({ behavior: "smooth" });
