@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>疗愈师IP线上变现现状测评</title>
+  <meta name="description" content="5分钟测出你的疗愈师IP卡在获客、成交、高客单、财富卡点还是AI提效。" />
+  <link rel="stylesheet" href="./style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">疗愈财富关系 + AI杠杆提效 + IP商业变现</p>
+        <h1>你的疗愈师IP，离高客单变现还差哪一步？</h1>
+        <p class="lead">
+          用 5 分钟完成测评，生成你的专属图形化报告，看清你目前卡在定位、获客、产品、成交、交付还是 AI 提效。
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#assessment">开始测评</a>
+          <a class="btn secondary" href="#how">查看说明</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="score-circle">
+          <span>6</span>
+          <small>维诊断</small>
+        </div>
+        <ul>
+          <li>IP定位清晰度</li>
+          <li>内容获客能力</li>
+          <li>产品变现系统</li>
+          <li>成交与财富卡点</li>
+          <li>交付与信任资产</li>
+          <li>AI提效能力</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="how" class="section">
+      <div class="container">
+        <h2>测评说明</h2>
+        <p>
+          本测评采用 1-5 分评分。1 = 完全不符合，5 = 非常符合。
+          完成后系统会自动生成综合分、六维雷达图、当前阶段、优势、卡点与 30 天行动建议。
+        </p>
+        <p class="note">
+          当前版本是纯前端静态网页，不会把用户答案上传到服务器。若你后续需要收集线索，可以接入表单工具、数据库或自动化系统。
+        </p>
+      </div>
+    </section>
+
+    <section id="assessment" class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>疗愈师IP线上变现现状测评</h2>
+          <p>请根据你当前的真实状态作答。</p>
+        </div>
+
+        <form id="assessmentForm" class="card">
+          <div class="field-grid">
+            <label>
+              你的姓名/昵称
+              <input type="text" id="name" placeholder="例如：未央" />
+            </label>
+            <label>
+              微信/联系方式（可选）
+              <input type="text" id="contact" placeholder="方便后续诊断联系" />
+            </label>
+          </div>
+
+          <div class="field">
+            <label>你现在最接近哪种状态？</label>
+            <select id="stage">
+              <option value="职场转型者">职场中，想转型做疗愈师IP</option>
+              <option value="技术沉淀者">刚学完疗愈技术/刚拿证，还没有稳定变现</option>
+              <option value="线下转线上者">线下有疗愈经验，想转到线上</option>
+              <option value="低客单转高客单者">已经在线上接个案，但客单价较低</option>
+              <option value="系统升级者">已经有一定收入，想升级高客单陪跑/系统化变现</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>你目前疗愈相关月收入大概是？</label>
+            <select id="income">
+              <option value="0元">0元</option>
+              <option value="1-3000元">1-3000元</option>
+              <option value="3000-10000元">3000-10000元</option>
+              <option value="10000-30000元">10000-30000元</option>
+              <option value="30000元以上">30000元以上</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>你现在最想解决的问题是？</label>
+            <select id="mainPain">
+              <option value="不知道怎么开始变现">不知道怎么开始变现</option>
+              <option value="不知道去哪里找客户">不知道去哪里找客户</option>
+              <option value="有人咨询但成交不了">有人咨询但成交不了</option>
+              <option value="不敢定高价/不敢卖高客单">不敢定高价/不敢卖高客单</option>
+              <option value="内容、产品、成交都想系统升级">内容、产品、成交都想系统升级</option>
+            </select>
+          </div>
+
+          <div id="questions"></div>
+
+          <button type="submit" class="btn primary submit">生成我的诊断报告</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="reportSection" class="section hidden">
+      <div class="container">
+        <div class="report-header">
+          <div>
+            <p class="eyebrow">你的专属测评报告</p>
+            <h2 id="reportTitle">疗愈师IP线上变现现状报告</h2>
+            <p id="reportSummary" class="lead"></p>
+          </div>
+          <div class="report-score">
+            <span id="totalScore">0</span>
+            <small>综合分 / 100</small>
+          </div>
+        </div>
+
+        <div class="report-grid">
+          <div class="card">
+            <h3>六维雷达图</h3>
+            <canvas id="radarChart" height="280"></canvas>
+          </div>
+          <div class="card">
+            <h3>基本信息</h3>
+            <div id="basicInfo"></div>
+            <hr />
+            <h3>当前类型</h3>
+            <p id="typeBadge" class="badge"></p>
+            <p id="typeDescription"></p>
+          </div>
+        </div>
+
+        <div class="report-grid">
+          <div class="card">
+            <h3>你的三大优势</h3>
+            <ul id="strengths"></ul>
+          </div>
+          <div class="card">
+            <h3>你的三大卡点</h3>
+            <ul id="blocks"></ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>30天行动建议</h3>
+          <ol id="actions"></ol>
+        </div>
+
+        <div class="card cta">
+          <h3>下一步：预约《IP商业卡点与财富卡点双重诊断咨询》</h3>
+          <p>
+            如果你想知道自己的卡点具体怎么破，以及接下来90天如何从疗愈能力走向稳定变现，
+            可以预约一次 60 分钟深度诊断。
+          </p>
+          <p>
+            我会帮你看清：你现在卡在获客、成交、产品、定价，还是财富信念；以及你最适合走哪条变现路径。
+          </p>
+          <button class="btn primary" onclick="window.print()">打印/保存PDF报告</button>
+          <button class="btn secondary" onclick="restartAssessment()">重新测评</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 未央财富疗愈工作室｜疗愈财富关系 + AI杠杆提效 + IP商业变现</p>
+    </div>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
