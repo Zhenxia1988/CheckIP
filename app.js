@@ -360,6 +360,7 @@ function createRadarChart(percentScores) {
     },
     options: {
       responsive: true,
+      maintainAspectRatio: false,
       scales: {
         r: {
           min: 0,

@@ -766,3 +766,35 @@ body.modal-open {
     padding: 24px 18px;
   }
 }
+
+
+/* ---- 报告页综合诊断图模块布局优化 ---- */
+.report-grid {
+  align-items: start;
+}
+
+.report-grid .card {
+  align-self: start;
+}
+
+#radarChart {
+  display: block;
+  width: 100% !important;
+  max-height: 300px;
+}
+
+.report-grid .card:has(#radarChart) {
+  padding-bottom: 20px;
+}
+
+@media (min-width: 801px) {
+  .report-grid .card:has(#radarChart) {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 800px) {
+  #radarChart {
+    max-height: 280px;
+  }
+}
