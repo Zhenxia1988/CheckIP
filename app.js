@@ -225,7 +225,14 @@ function createRadarChart(percentScores) {
   radarChart = new Chart(ctx, {
     type: "radar",
     data: {
-      labels: dimensions.map(d => d.name),
+      labels: [
+        "IP定位清晰度",
+        ["内容获客", "能力"],
+        ["产品变现", "系统"],
+        "成交与财富卡点",
+        ["交付与信任", "资产"],
+        ["AI提效", "能力"]
+      ],
       datasets: [{
         label: "当前能力得分",
         data: dimensions.map(d => percentScores[d.key]),
@@ -241,7 +248,7 @@ function createRadarChart(percentScores) {
           min: 0,
           max: 100,
           ticks: { stepSize: 20 },
-          pointLabels: { font: { size: 13 } }
+          pointLabels: { font: { size: 11 } }
         }
       },
       plugins: {

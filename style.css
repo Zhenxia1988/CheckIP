@@ -498,3 +498,135 @@ footer {
     font-size: 15px;
   }
 }
+
+
+/* ---- 报告区边距与综合诊断图可读性优化 ---- */
+#reportSection .report-capture-shell {
+  padding-top: 28px;
+  padding-left: 28px;
+  padding-right: 28px;
+  padding-bottom: 22px;
+}
+
+.report-header > div:first-child {
+  padding-right: 16px;
+  max-width: 720px;
+}
+
+#reportSummary {
+  padding-right: 10px;
+  word-break: break-word;
+}
+
+.card canvas#radarChart {
+  max-width: 100%;
+}
+
+@media (max-width: 800px) {
+  #reportSection .report-capture-shell {
+    padding-top: 22px;
+    padding-left: 18px;
+    padding-right: 18px;
+    padding-bottom: 18px;
+  }
+
+  .report-header > div:first-child {
+    padding-right: 0;
+    max-width: none;
+  }
+}
+
+
+/* ---- 诊断说明与下个模块间距优化 ---- */
+#how.section {
+  padding-bottom: 22px;
+}
+
+#assessment.section {
+  padding-top: 24px;
+}
+
+
+/* ---- 六维诊断模块重新排版：左图右文，减少空白 ---- */
+.six-d-card {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  align-items: center;
+  column-gap: 18px;
+  row-gap: 0;
+  min-height: auto;
+  padding: 20px 22px;
+}
+
+.six-d-card .score-circle {
+  width: 160px;
+  height: 160px;
+  margin: 0 auto;
+  flex: none;
+}
+
+.six-d-text {
+  width: 100%;
+  min-width: 0;
+}
+
+.six-d-text ul {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+}
+
+.six-d-text li {
+  font-size: 16px;
+  line-height: 1.55;
+  padding-left: 14px;
+  margin: 0;
+}
+
+.six-d-text li::before {
+  width: 5px;
+  height: 5px;
+  top: .8em;
+}
+
+@media (max-width: 800px) {
+  .six-d-card {
+    grid-template-columns: 150px 1fr;
+    column-gap: 14px;
+    padding: 18px;
+  }
+
+  .six-d-card .score-circle {
+    width: 132px;
+    height: 132px;
+  }
+
+  .six-d-text li {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 560px) {
+  .six-d-card {
+    grid-template-columns: 1fr;
+    row-gap: 16px;
+    justify-items: center;
+    text-align: left;
+  }
+
+  .six-d-card .score-circle {
+    width: 128px;
+    height: 128px;
+  }
+
+  .six-d-text {
+    width: 100%;
+  }
+
+  .six-d-text ul {
+    gap: 8px;
+  }
+}
