@@ -87,7 +87,7 @@ function renderQuestions() {
       block.innerHTML = `
         <div>
           <strong>${index}. ${question}</strong>
-          <div class="muted">1 = 完全不符合，5 = 非常符合</div>
+          <div class="question-hint">（1 = 完全不符合，5 = 非常符合）</div>
         </div>
         <div class="options" role="radiogroup" aria-label="${question}">
           ${[1,2,3,4,5].map(value => `
@@ -268,7 +268,7 @@ function generateReport(event) {
   const mainPain = document.querySelector("#mainPain").value;
 
   document.querySelector("#totalScore").textContent = totalScore;
-  document.querySelector("#reportTitle").textContent = `${name}的疗愈师IP线上变现现状报告`;
+  document.querySelector("#reportTitle").textContent = `${name}的IP诊断报告`;
   document.querySelector("#reportSummary").textContent =
     `你的当前类型是「${reportType.name}」。你最需要关注的是：${lowest.map(key => dimensions.find(d => d.key === key).name).join("、")}。`;
 
@@ -347,11 +347,11 @@ async function downloadReportImage(button) {
       throw new Error("图片生成失败");
     }
 
-    const name = document.querySelector("#name")?.value?.trim() || "疗愈师IP测评报告";
+    const name = document.querySelector("#name")?.value?.trim() || "IP诊断报告";
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = `${safeFileName(name)}-疗愈师IP测评报告.png`;
+    link.download = `${safeFileName(name)}-IP诊断报告.png`;
     document.body.appendChild(link);
     link.click();
     link.remove();

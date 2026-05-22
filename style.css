@@ -224,8 +224,9 @@ input, select {
 }
 
 .report-score {
-  flex: 0 0 160px;
-  height: 160px;
+  flex: 0 0 170px;
+  width: 170px;
+  height: 170px;
   border-radius: 999px;
   background: #fff;
   border: 8px solid #eadfce;
@@ -245,7 +246,6 @@ input, select {
 .report-score small {
   display: block;
   color: var(--muted);
-  margin-top: -38px;
 }
 
 .report-grid {
@@ -335,4 +335,166 @@ footer {
 .btn:disabled {
   opacity: .65;
   cursor: wait;
+}
+
+
+/* ---- 报告下载图样式优化：标题缩短、顶部留白、分数圆形居中 ---- */
+#reportSection .report-capture-shell {
+  padding-top: 26px;
+  padding-bottom: 20px;
+}
+
+.report-header {
+  align-items: flex-start;
+}
+
+.report-header > div:first-child {
+  padding-top: 8px;
+}
+
+.report-score {
+  position: relative;
+  flex: 0 0 170px;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #fffdf9 0%, #f8efe0 100%);
+  border: 10px solid #eadfce;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.report-score::after {
+  content: "";
+  position: absolute;
+  inset: 16px;
+  border-radius: 50%;
+  border: 1px solid rgba(185, 137, 69, .25);
+  pointer-events: none;
+}
+
+.report-score span {
+  font-size: 60px;
+  line-height: 1;
+  font-weight: 800;
+  color: var(--primary-dark);
+  margin: 0;
+  display: block;
+  text-align: center;
+}
+
+.report-score small {
+  margin: 10px 0 0 0;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--muted);
+  text-align: center;
+  display: block;
+  position: relative;
+  z-index: 1;
+  white-space: pre-line;
+}
+
+#reportTitle {
+  max-width: 650px;
+  word-break: break-word;
+}
+
+@media (max-width: 800px) {
+  #reportSection .report-capture-shell {
+    padding-top: 22px;
+  }
+
+  .report-score {
+    margin: 8px auto 0;
+  }
+
+  .report-header > div:first-child {
+    padding-top: 0;
+  }
+
+  .report-score span {
+    font-size: 58px;
+  }
+}
+
+
+.question-hint {
+  margin-top: 4px;
+  color: #a79c90;
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+
+/* ---- 六维诊断模块布局优化 ---- */
+.six-d-card {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  min-height: 220px;
+}
+
+.six-d-card .score-circle {
+  flex: 0 0 132px;
+  margin-bottom: 0;
+}
+
+.six-d-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.six-d-text ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.six-d-text li {
+  position: relative;
+  padding-left: 16px;
+  color: var(--text);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.six-d-text li::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+  position: absolute;
+  left: 0;
+  top: .75em;
+  transform: translateY(-50%);
+}
+
+.hero-card ul {
+  margin: 0;
+  padding-left: 0;
+}
+
+@media (max-width: 800px) {
+  .six-d-card {
+    align-items: center;
+    gap: 18px;
+    min-height: auto;
+  }
+
+  .six-d-text ul {
+    gap: 8px;
+  }
+
+  .six-d-text li {
+    font-size: 15px;
+  }
 }
