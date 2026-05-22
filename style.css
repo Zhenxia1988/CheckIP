@@ -630,3 +630,139 @@ footer {
     gap: 8px;
   }
 }
+
+
+/* ---- 首页删除六维诊断卡片后的单栏布局 ---- */
+.hero-grid.no-side-card {
+  grid-template-columns: 1fr;
+  max-width: 880px;
+  text-align: left;
+}
+
+.hero-grid.no-side-card .lead {
+  max-width: 780px;
+}
+
+@media (max-width: 800px) {
+  .hero-grid.no-side-card {
+    max-width: none;
+  }
+}
+
+
+/* ---- 商业诊断版新增样式 ---- */
+.readiness-title {
+  margin-top: 30px;
+}
+
+.question-hint {
+  margin-top: 4px;
+  color: #a79c90;
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+#basicInfo hr {
+  margin: 16px 0;
+}
+
+
+/* ---- 转化增强版：开放题、行动准备度、二维码弹窗 ---- */
+textarea {
+  width: 100%;
+  margin-top: 8px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-size: 16px;
+  background: #fff;
+  color: var(--text);
+  font-family: inherit;
+  line-height: 1.7;
+  resize: vertical;
+}
+
+.readiness-badge {
+  background: #fff2d8;
+  color: #8f6936;
+}
+
+.card > p {
+  color: var(--muted);
+}
+
+.cta .report-actions {
+  align-items: center;
+}
+
+.qr-modal.hidden {
+  display: none;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+.qr-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.qr-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(46, 42, 38, .42);
+  backdrop-filter: blur(5px);
+}
+
+.qr-modal-card {
+  position: relative;
+  width: min(420px, 100%);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  box-shadow: 0 24px 70px rgba(46, 42, 38, .25);
+  padding: 28px;
+  text-align: center;
+}
+
+.qr-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--soft);
+  color: var(--text);
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.qr-modal-desc,
+.qr-modal-note {
+  color: var(--muted);
+  margin: 12px 0;
+}
+
+.qr-image {
+  width: min(280px, 86vw);
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  box-shadow: 0 12px 28px rgba(78, 52, 24, .12);
+  margin: 12px auto;
+  display: block;
+}
+
+@media (max-width: 560px) {
+  .qr-modal-card {
+    padding: 24px 18px;
+  }
+}
