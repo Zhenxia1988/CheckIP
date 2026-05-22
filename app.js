@@ -297,10 +297,78 @@ function generateReport(event) {
   }));
 }
 
-function downloadPdfReport() {
-  // 当前版本调用浏览器打印能力。
-  // 在打印弹窗中选择“保存为 PDF”或“另存为 PDF”，即可下载报告。
-  window.print();
+
+function safeFileName(text) {
+  return String(text || "healer-ip-report")
+    .trim()
+    .replace(/[\\/:*?"<>|]/g, "-")
+    .replace(/\s+/g, "-")
+    .slice(0, 40) || "healer-ip-report";
+}
+
+async function downloadReportImage(button) {
+  const reportContainer = document.querySelector("#reportSection .container");
+  if (!reportContainer) {
+    alert("还没有生成报告，请先完成测评。");
+    return;
+  }
+
+  if (typeof html2canvas === "undefined") {
+    alert("报告下载组件还没有加载完成，请刷新页面后再试。");
+    return;
+  }
+
+  const hiddenItems = document.querySelectorAll(".report-download-hide");
+  const originalDisplays = Array.from(hiddenItems).map(item => item.style.display);
+
+  const originalText = button ? button.textContent : "";
+  if (button) {
+    button.disabled = true;
+    button.textContent = "正在生成图片...";
+  }
+
+  try {
+    hiddenItems.forEach(item => {
+      item.style.display = "none";
+    });
+
+    await new Promise(resolve => setTimeout(resolve, 120));
+
+    const canvas = await html2canvas(reportContainer, {
+      backgroundColor: "#fbf7f0",
+      scale: Math.min(2, window.devicePixelRatio || 1.5),
+      useCORS: true,
+      scrollX: 0,
+      scrollY: -window.scrollY
+    });
+
+    const blob = await new Promise(resolve => canvas.toBlob(resolve, "image/png", 1));
+    if (!blob) {
+      throw new Error("图片生成失败");
+    }
+
+    const name = document.querySelector("#name")?.value?.trim() || "疗愈师IP测评报告";
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `${safeFileName(name)}-疗愈师IP测评报告.png`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  } catch (error) {
+    console.error(error);
+    alert("报告图片生成失败，请稍后再试，或更换浏览器打开。");
+  } finally {
+    hiddenItems.forEach((item, index) => {
+      item.style.display = originalDisplays[index];
+    });
+    if (button) {
+      button.disabled = false;
+      button.textContent = originalText || "下载报告图片";
+    }
+  }
 }
 
 function restartAssessment() {

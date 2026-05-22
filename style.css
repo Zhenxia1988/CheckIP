@@ -323,3 +323,16 @@ footer {
     page-break-inside: avoid;
   }
 }
+
+
+.report-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.btn:disabled {
+  opacity: .65;
+  cursor: wait;
+}

@@ -7,6 +7,7 @@
   <meta name="description" content="5分钟测出你的疗愈师IP卡在获客、成交、高客单、财富卡点还是AI提效。" />
   <link rel="stylesheet" href="./style.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 <body>
   <header class="hero">
@@ -166,8 +167,10 @@
           <p>
             我会帮你看清：你现在卡在获客、成交、产品、定价，还是财富信念；以及你最适合走哪条变现路径。
           </p>
-          <button class="btn primary" onclick="downloadPdfReport()">下载PDF报告</button>
-          <button class="btn secondary" onclick="restartAssessment()">重新测评</button>
+          <div class="report-actions report-download-hide">
+            <button class="btn primary" onclick="downloadReportImage(this)">下载报告图片</button>
+            <button class="btn secondary" onclick="restartAssessment()">重新测评</button>
+          </div>
         </div>
       </div>
     </section>
